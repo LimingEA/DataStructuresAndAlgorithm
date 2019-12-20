@@ -36,7 +36,17 @@ namespace DataStructuresAndAlgorithm
             sr.Close();
             Console.WriteLine("数量:" + stringsFound.Count());
             var memoryAfter = GC.GetTotalMemory(false);
-            Console.WriteLine("数量："+stringsFound.Count)
+            Console.WriteLine("数量：" + stringsFound.Count());
+        }
+        public static void TestStreamReaderEnumerble()
+        {
+            var memoryBefore = GC.GetTotalMemory(true);
+            IEnumerable<String> stringsFound;
+            try
+            {
+                stringsFound =
+                    from line in new StreamReaderEnumerable(@"c:\\temp\tempFile.txt");
+            }
         }
     }
 }
