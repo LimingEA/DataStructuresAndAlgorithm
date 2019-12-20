@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace CDS002.IEnumerableWithGenericsDemo
+namespace Progeam
+
 {
     /// <summary>
     /// 对一个普通的文本文件，检索指定的关键词在文件中的数量
