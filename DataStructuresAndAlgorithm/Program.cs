@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace DataStructuresAndAlgorithm
 {
@@ -6,20 +9,34 @@ namespace DataStructuresAndAlgorithm
     {
         static void Main(string[] args)
         {
-            int Cock, Hen, Chick;
-            for (Cock = 0; Cock <= 20; Cock++)
-            {
-                for (Hen = 0; Hen <= 33; Hen++)
-                {
-                    Chick = 100 - Cock - Hen; 
-                    if (3 * Hen + 5 * Cock + Chick / 3.0 == 100)
-                        Console.WriteLine("公鸡{0}只,母鸡{1}只,小鸡{2}只\n", Cock, Hen, Chick);
-                }
-                count++;
-            }
             
-            Console.ReadKey();
+        }
+        public static void TestReadingFile()
+        {
+            var memoryBefore = GC.GetTotalMemory(true);
+            StreamReader sr;
+            try
+            {
+                sr = File.OpenText("c:\\temp\\tempFile.txt");
 
+            }
+            catch(FileNotFoundException)
+            {
+                Console.WriteLine(@"这个例子需要一个名为c:\\temp\\tempFile.txt的文件");
+            }
+            var fileContents = new List<string>();
+            while(!sr.EndOfStream)
+            {
+                fileContents.Add(sr.ReadLine());
+            }
+            var stringsFound =
+                from line in fileContents
+                where line.Contains("人工智能")
+                select line;
+            sr.Close();
+            Console.WriteLine("数量:" + stringsFound.Count());
+            var memoryAfter = GC.GetTotalMemory(false);
+            Console.WriteLine("数量："+stringsFound.Count)
         }
     }
 }
